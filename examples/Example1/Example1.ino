@@ -15,24 +15,24 @@ public:
 
     void turnOn()
     {
-        digitalWrite(ledPin, HIGH);
+        digitalWrite(ledPin, LOW);
     }
 
     void turnOff()
     {
-        digitalWrite(ledPin, LOW);
+        digitalWrite(ledPin, HIGH);
     }
 
     String getState()
     {
-        return digitalRead(ledPin) == HIGH ? "On" : "Off";
+        return digitalRead(ledPin) == HIGH ? "OFF" : "ON";
     }
 
 private:
     int ledPin;
 };
 
-LEDDevice led(13); // Using the built-in LED on pin 13
+LEDDevice led(16); // Using the built-in LED on pin 16
 Device<LEDDevice> *myDevice = nullptr;
 
 void setup()
@@ -42,7 +42,7 @@ void setup()
 
     // Device Properties
     std::list<Property<LEDDevice>> properties;
-    properties.push_back(Property("State", "LED State", "string", &LEDDevice::getState));
+    properties.push_back(Property("LED State", "Is the LED State", "string", &LEDDevice::getState));
 
     // Device Actions
     std::list<Action<LEDDevice>> actions;
